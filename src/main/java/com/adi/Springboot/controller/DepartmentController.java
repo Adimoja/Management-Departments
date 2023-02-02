@@ -2,6 +2,7 @@ package com.adi.Springboot.controller;
 
 import com.adi.Springboot.entity.Department;
 import com.adi.Springboot.service.DepartmentService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public class DepartmentController {
     }
 
     @PostMapping("/departments")
-    public Department saveDepartment(@RequestBody Department department){
+    public Department saveDepartment(@Valid @RequestBody Department department){
         return  departmentService.saveDepartment(department);
     }
 
@@ -37,7 +38,7 @@ public class DepartmentController {
         return "Delete Succesfull";
     }
     @PutMapping("/departments/{id}")
-    public Department updateDepartment( @PathVariable("id") Long id,
+    public Department updateDepartment(@Valid @PathVariable("id") Long id,
                                         @RequestBody Department department){
         return departmentService.updateDepartment(id,department);
     }
